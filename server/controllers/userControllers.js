@@ -47,4 +47,18 @@ const loginUser = async (req, res) => {
     }
 }
 
-export { registerUser, loginUser }
+const getUserData = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        if(!user) {
+            return res.status(400).json({ success: false, message: "User does not exist" });
+        }else{
+            return res.status(200).json({ success: true, message: "User data fetched successfully", user });
+        }
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+}
+
+export { registerUser, loginUser, getUserData };
