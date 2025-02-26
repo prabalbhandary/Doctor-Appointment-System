@@ -8,7 +8,7 @@
   "main": "./server/index.js",
   "scripts": {
     "server": "nodemon ./server/index.js",
-    "client": "npm start --prefix ./client",
+    "client": "npm run dev --prefix ./client",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
