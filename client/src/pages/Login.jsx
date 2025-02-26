@@ -1,11 +1,27 @@
 import { Form, Input } from 'antd'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "../styles/Register.css"
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Login = () => {
-  const onFinishHandler = (values) => {
-    console.log(values)
+  const navigate = useNavigate();
+  const onFinishHandler = async(values) => {
+    try {
+      const res = await axios.post("http://localhost:5000/api/v1/users/login?", values);
+      if(res?.data?.success) {
+          toast.success(res?.data?.message);
+          navigate("/");
+      }else{
+          toast.error(res?.data?.message);
+      }
+  } catch (error) {
+      if(error?.response?.data && error?.response?.data?.message) {
+          console.log(error?.response?.data?.message)
+          toast.error(error?.response?.data?.message);
+      }
+  }
   }
   return (
     <>
