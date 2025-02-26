@@ -12,6 +12,7 @@ const Login = () => {
       const res = await axios.post("http://localhost:5000/api/v1/users/login?", values);
       if(res?.data?.success) {
           toast.success(res?.data?.message);
+          localStorage.setItem("token", res?.data?.token);
           navigate("/");
       }else{
           toast.error(res?.data?.message);
