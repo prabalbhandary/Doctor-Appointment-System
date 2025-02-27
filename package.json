@@ -15,15 +15,13 @@
   "type": "module",
   "main": "./server/index.js",
   "scripts": {
-    "build": "npm install && npm install --prefix ./client && npm run build --prefix client",
-    "server": "nodemon ./server/index.js",
-    "client": "npm run dev --prefix ./client ",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "build": "npm install && npm install --prefix client && npm run build --prefix client",
+    "dev": "nodemon ./server/index.js",
+    "start": "nodemon ./server/index.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
-    "concurrently": "^9.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
