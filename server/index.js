@@ -18,6 +18,8 @@ connectDB();
 //rest obejct
 const app = express();
 
+const __dirname = path.resolve();
+
 const corsOptions = {
   origin: process.env.URL,
   credentials: true,
