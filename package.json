@@ -15,6 +15,7 @@
   "type": "module",
   "main": "./server/index.js",
   "scripts": {
+    "build": "npm run build --prefix ./client",
     "server": "nodemon serevr.js",
     "client": "npm run dev --prefix ./client ",
     "start": "concurrently \"npm run server\" \"npm run client\""
