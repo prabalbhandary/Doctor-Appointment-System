@@ -1,62 +1,83 @@
-.main{
-    padding: 10px;
-    height: 100vh;
+.main {
+  padding: 10px;
+  height: 100vh;
 }
-.layout{
-    display: flex;
-}
-.sidebar{
-    min-height: 100%;
-    width: 250px;
-    border-radius: 4px;
-    background-color: bisque;
-    box-shadow: 0 0 3px black;
-    margin-right: 15px;
-}
-.logo h6{
-    font-size: 1.5rem;
-    text-align: center;
-    margin: 10px 0;
+.layout {
+  display: flex;
 }
 
-.content{
-    height: 100%;
-    width: 100%;
+.sidebar {
+  min-height: 100%;
+  width: 300px;
+  border-radius: 5px;
+  background-color: rgb(51, 1, 1);
+  box-shadow: 0 0 2px gray;
+  margin-right: 20px;
+  color: white;
 }
 
-.header{
-    height: 10vh;
-    margin-bottom: 15px;
-    box-shadow: 0 0 3px black;
-    background-color: beige;
+.content {
+  width: 100%;
+  height: 100%;
 }
 
-.body{
-    height: 90vh;
-    margin-bottom: 15px;
-    box-shadow: 0 0 3px black;
-    background-color: beige;
+.header {
+  height: 10vh;
+  margin-bottom: 20px;
+  box-shadow: 0 0 2px gray;
+  background-color: white;
 }
-.menu{
-    margin-top: 40px;
+.body {
+  height: 85vh;
+  margin-bottom: 20px;
+  box-shadow: 0 0 2px gray;
+  background-color: white;
 }
-.menu-item{
-    margin-top: 25px;
+.logo h6 {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 20px 0px;
 }
-.menu-item a{
-    color: black;
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 500;
+.menu {
+  margin-top: 50px;
 }
-.menu-item i{
-    font-size: 1.2rem;
-    margin: 0 10px;
+.menu-item {
+  margin-top: 30px;
 }
-.active{
-    background-color: azure;
-    padding: 8px;
+.menu-item a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
 }
-.active a, .active i{
-    color: brown;
+.menu-item i {
+  font-size: 1.2rem;
+  margin: 0 15px;
+}
+.active {
+  background-color: white;
+  padding: 10px;
+}
+.active a,
+.active i {
+  color: rgb(51, 1, 1);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  justify-content: flex-end;
+  margin: 0 15px;
+}
+
+.header-content i {
+  margin-right: 20px;
+  font-size: 1.2rem;
+}
+.header-content a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: blue;
+  margin: 0 10px;
+  text-transform: uppercase;
 }

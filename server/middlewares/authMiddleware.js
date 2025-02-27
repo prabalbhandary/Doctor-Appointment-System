@@ -1,20 +1,26 @@
 import jwt from "jsonwebtoken";
 
-const authMiddleware = async (req, res, next) => {
-    try {
-        const token = req.headers["authorization"]?.split(" ")[1];
-        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-            if (err) {
-                return res.status(401).json({ success: false, message: "Unauthorized" });
-            }else{
-                req.user = decoded;
-                next();
-            }
-        })
-    } catch (error) {
-        console.log(error.message);
-        return res.status(500).json({ success: false, message: "Internal Server Error" });
-    }
-}
+const authMiddleware =  async (req, res, next) => {
+  try {
+    const token = req.headers["authorization"].split(" ")[1];
+    jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
+      if (err) {
+        return res.status(200).send({
+          message: "Auth Fialed",
+          success: false,
+        });
+      } else {
+        req.body.userId = decode.id;
+        next();
+      }
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({
+      message: "Auth Failed",
+      success: false,
+    });
+  }
+};
 
-export default authMiddleware
+export default authMiddleware;

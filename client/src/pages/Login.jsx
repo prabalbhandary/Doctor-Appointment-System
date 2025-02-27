@@ -1,52 +1,58 @@
-import { Form, Input } from 'antd'
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import "../styles/Register.css"
-import axios from 'axios'
-import { toast } from 'react-toastify'
-import {useDispatch} from "react-redux"
-import { showLoading, hideLoading } from '../redux/features/alertSlice'
+import React from "react";
+import "../styles/Register.css";
+import { Form, Input, message } from "antd";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const onFinishHandler = async(values) => {
+  //form handler
+  const onfinishHandler = async (values) => {
     try {
       dispatch(showLoading());
-      const res = await axios.post("http://localhost:5000/api/v1/users/login?", values);
+      const res = await axios.post("http://localhost:5000/api/v1/user/login", values);
+      window.location.reload();
       dispatch(hideLoading());
-      if(res?.data?.success) {
-          toast.success(res?.data?.message);
-          localStorage.setItem("token", res?.data?.token);
-          navigate("/");
-      }else{
-          toast.error(res?.data?.message);
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.token);
+        message.success("Login Successfully");
+        navigate("/");
+      } else {
+        message.error(res.data.message);
       }
-  } catch (error) {
+    } catch (error) {
       dispatch(hideLoading());
-      if(error?.response?.data && error?.response?.data?.message) {
-          console.log(error?.response?.data?.message)
-          toast.error(error?.response?.data?.message);
-      }
-  }
-  }
+      console.log(error);
+      message.error("something went wrong");
+    }
+  };
   return (
-    <>
-        <div className="form-container">
-            <Form className='register-form' layout='vertical' onFinish={onFinishHandler}>
-                <h3 className='text-center'>Login Form</h3>
-                <Form.Item label="Email" name="email">
-                    <Input type="email" required />
-                </Form.Item>
-                <Form.Item label="Password" name="password">
-                    <Input type="password" required />
-                </Form.Item>
-                <Link to="/register" className='m-2'>Not a user? Register Here</Link>
-                <button type="submit" className='btn btn-primary'>Login</button>
-            </Form>
-        </div>
-    </>
-  )
-}
+    <div className="form-container ">
+      <Form
+        layout="vertical"
+        onFinish={onfinishHandler}
+        className="register-form"
+      >
+        <h3 className="text-center">Login From</h3>
 
-export default Login
+        <Form.Item label="Email" name="email">
+          <Input type="email" required />
+        </Form.Item>
+        <Form.Item label="Password" name="password">
+          <Input type="password" required />
+        </Form.Item>
+        <Link to="/register" className="m-2">
+          Not a user Register here
+        </Link>
+        <button className="btn btn-primary" type="submit">
+          Login
+        </button>
+      </Form>
+    </div>
+  );
+};
+
+export default Login;

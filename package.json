@@ -2,13 +2,21 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/prabalbhandary/Doctor-Appointment-System#readme",
+  "bugs": {
+    "url": "https://github.com/prabalbhandary/Doctor-Appointment-System/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabalbhandary/Doctor-Appointment-System.git"
+  },
   "license": "ISC",
   "author": "Prabal Bhandary",
   "type": "module",
   "main": "./server/index.js",
   "scripts": {
-    "server": "nodemon ./server/index.js",
-    "client": "npm run dev --prefix ./client",
+    "server": "nodemon serevr.js",
+    "client": "npm run dev --prefix ./client ",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
@@ -19,7 +27,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.11.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.9"
   }
