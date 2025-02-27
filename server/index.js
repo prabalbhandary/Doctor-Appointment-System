@@ -36,11 +36,9 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/doctor", doctorRoutes);
 
-// Serve static files if you're using React or similar
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
 });
 
 
