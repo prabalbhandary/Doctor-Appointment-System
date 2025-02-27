@@ -33,6 +33,14 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/admin", adminRoutes);
 app.use("/api/v1/doctor", doctorRoutes);
 
+// Serve static files if you're using React or similar
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
 //port
 const port = process.env.PORT || 5000;
 const mode = process.env.NODE_MODE || "production";
