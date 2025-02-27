@@ -1,12 +1,12 @@
-import 'colors';
+import "colors";
 import express from "express";
 import cors from "cors";
-import moragan from "morgan";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
+import morgan from "morgan";
 
 //dotenv conig
 dotenv.config();
@@ -17,10 +17,16 @@ connectDB();
 //rest obejct
 const app = express();
 
-//middlewares
-app.use(cors());
+const corsOptions = {
+  origin: process.env.URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(moragan("dev"));
+app.use(morgan("dev"));
+app.use(express.static("public/uploads"));
 
 //routes
 app.use("/api/v1/user", userRoutes);
@@ -29,10 +35,11 @@ app.use("/api/v1/doctor", doctorRoutes);
 
 //port
 const port = process.env.PORT || 5000;
+const mode = process.env.NODE_MODE || "production";
 //listen port
 app.listen(port, () => {
   console.log(
-    `Server Running in ${process.env.NODE_MODE} Mode on port ${process.env.PORT}`
+    `Server Running in ${mode} mode at http://localhost:${port}`
       .bgCyan.white
   );
 });
