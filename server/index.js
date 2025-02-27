@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import morgan from "morgan";
+import path from "path";
 
 //dotenv conig
 dotenv.config();
