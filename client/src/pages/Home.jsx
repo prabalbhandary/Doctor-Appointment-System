@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import {useDispatch} from "react-redux"
 import { showLoading, hideLoading } from '../redux/features/alertSlice'
+import Layout from '../components/Layout';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,9 @@ const Home = () => {
     getUserData()
   }, [])
   return (
-    <div>Home</div>
+    <Layout>
+      <h1>Home</h1>
+    </Layout>
   )
 }
 
