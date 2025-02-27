@@ -4,12 +4,17 @@ import "../styles/Register.css"
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import {useDispatch} from "react-redux"
+import { showLoading, hideLoading } from '../redux/features/alertSlice'
 
 const Register = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const onFinishHandler = async(values) => {
         try {
+            dispatch(showLoading());
             const res = await axios.post("http://localhost:5000/api/v1/users/register", values);
+            dispatch(hideLoading());
             if(res?.data?.success) {
                 toast.success(res?.data?.message);
                 navigate("/login");
@@ -17,6 +22,7 @@ const Register = () => {
                       toast.error(res?.data?.message);
                   }
         } catch (error) {
+            dispatch(hideLoading());
             if(error?.response?.data && error?.response?.data?.message) {
                 console.log(error?.response?.data?.message)
                 toast.error(error?.response?.data?.message);
